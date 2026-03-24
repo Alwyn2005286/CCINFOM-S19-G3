@@ -1,79 +1,57 @@
 -- NOTE: Uncomment the line below if running this script for the first time to create the database
-CREATE DATABASE IF NOT EXISTS establishmentDB;
+-- CREATE DATABASE IF NOT EXISTS establishmentDB;
 USE establishmentDB;
 
--- 1. Create inspection requirements table
+-- Create inspection requirements table
 CREATE TABLE inspection_requirements (
     Requirement_Code INT PRIMARY KEY,
-    Title VARCHAR(100) NOT NULL,
-    Standard_Fine INT NOT NULL DEFAULT 1000
+    Title VARCHAR(100),
+    Standard_Fine INT
 );
 
--- 2. Create inspector management table
+-- Create inspector management table
 CREATE TABLE inspector_management (
     Inspector_Id INT PRIMARY KEY AUTO_INCREMENT,
-    Full_Name VARCHAR(100) NOT NULL,
-    District VARCHAR(50) NOT NULL,
-    Active_Status ENUM('ACTIVE','INACTIVE') NOT NULL DEFAULT 'ACTIVE'
+    Full_Name VARCHAR(50),
+    District VARCHAR(50),
+    Active_Status ENUM('ACTIVE','INACTIVE') NOT NULL
 );
 
--- 3. Create establishment table (NO FK to inspection)
-CREATE TABLE establishment (
-    Establishment_Id INT PRIMARY KEY AUTO_INCREMENT,
-    Establishment_Name VARCHAR(100) NOT NULL,
-    Owner_Name VARCHAR(100) NOT NULL,
-    Address VARCHAR(255) NOT NULL,
-    Contact_Info VARCHAR(20),
-    Operating_Status ENUM('OPEN','CLOSED','SUSPENDED') NOT NULL DEFAULT 'OPEN'
-);
-
--- 4. Create assigned inspector table
+-- Create assigned inspector table
 CREATE TABLE assigned_inspector (
     Assignment_Id INT PRIMARY KEY AUTO_INCREMENT,
-    Inspector_Id INT NOT NULL,
-    Establishment_Id INT NOT NULL,
-    Assignment_Date DATETIME DEFAULT CURRENT_TIMESTAMP,
-    
-    FOREIGN KEY (Inspector_Id) REFERENCES inspector_management(Inspector_Id),
-    FOREIGN KEY (Establishment_Id) REFERENCES establishment(Establishment_Id)
+    Inspector_Id INT,
+    Full_Name VARCHAR(50)
 );
 
--- 5. Create inspection table with COMPOSITE PRIMARY KEY
---    This enforces: Only ONE inspection per establishment per day
+-- Create establishment table
+CREATE TABLE establishment (
+   Establishment_Id INT PRIMARY KEY AUTO_INCREMENT,
+   Establishment_Name VARCHAR(50),
+   Owner_Name VARCHAR(50),
+   Address VARCHAR(100),
+   Contact_Info VARCHAR(15),
+   Operating_Status ENUM('OPEN','CLOSED','SUSPENDED')
+);
+
+-- Create inspection table
 CREATE TABLE inspection (
-    Establishment_Id INT NOT NULL,
-    Inspection_Date DATE NOT NULL,
-    Assignment_Id INT NOT NULL,
+    Inspection_Id INT PRIMARY KEY AUTO_INCREMENT,
+    Inspection_Date DATE,
     Score FLOAT,
-    Grade VARCHAR(4),
-    Remarks VARCHAR(500),
-    
-    -- COMPOSITE PRIMARY KEY: No duplicates for (Establishment_Id, Inspection_Date)
-    PRIMARY KEY (Establishment_Id, Inspection_Date),
-    
-    FOREIGN KEY (Establishment_Id) REFERENCES establishment(Establishment_Id),
-    FOREIGN KEY (Assignment_Id) REFERENCES assigned_inspector(Assignment_Id)
+    Grade ENUM('PASS','FAIL'),
+    Remarks VARCHAR(100),
+    Establishment_Id INT,
+    Assignment_Id INT,
+    Violation_Id INT
 );
 
--- 6. Create violations table with COMPOSITE FOREIGN KEY
+-- Create violations table
 CREATE TABLE violations (
     Violation_Id INT PRIMARY KEY AUTO_INCREMENT,
-    Establishment_Id INT NOT NULL,
-    Inspection_Date DATE NOT NULL,
-    Requirement_Code INT NOT NULL,
-    
-    -- COMPOSITE FOREIGN KEY: Links to (Establishment_Id, Inspection_Date) in inspection table
-    FOREIGN KEY (Establishment_Id, Inspection_Date) 
-        REFERENCES inspection(Establishment_Id, Inspection_Date),
-    FOREIGN KEY (Requirement_Code) 
-        REFERENCES inspection_requirements(Requirement_Code)
+    Requirement_Code INT,
+    Inspection_Date DATE
 );
-
--- Add indexes for better query performance
-CREATE INDEX idx_inspection_establishment ON inspection(Establishment_Id);
-CREATE INDEX idx_violations_inspection ON violations(Establishment_Id, Inspection_Date);
-CREATE INDEX idx_assigned_inspector ON assigned_inspector(Inspector_Id);
-
 -- Insert inspection requirements with standard fine of 1000 for each violation
 INSERT INTO inspection_requirements (Requirement_Code, Title, Standard_Fine) VALUES
 (1, 'Cross-Contamination', 1000),
