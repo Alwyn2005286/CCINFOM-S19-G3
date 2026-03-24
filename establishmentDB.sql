@@ -50,7 +50,7 @@ CREATE TABLE inspection (
 CREATE TABLE violations (
     Violation_Id INT PRIMARY KEY AUTO_INCREMENT,
     Requirement_Code INT,
-    Inspection_Date DATE
+    Inspection_ID INT
 );
 -- Insert inspection requirements with standard fine of 1000 for each violation
 INSERT INTO inspection_requirements (Requirement_Code, Title, Standard_Fine) VALUES
