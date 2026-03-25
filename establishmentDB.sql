@@ -11,7 +11,7 @@ CREATE TABLE inspection_requirements (
 
 -- Create inspector management table
 CREATE TABLE inspector_management (
-    Inspector_Id INT PRIMARY KEY AUTO_INCREMENT,
+    Inspector_Id INT PRIMARY KEY ,
     Full_Name VARCHAR(50),
     District VARCHAR(50),
     Active_Status ENUM('ACTIVE','INACTIVE') NOT NULL
@@ -19,14 +19,14 @@ CREATE TABLE inspector_management (
 
 -- Create assigned inspector table
 CREATE TABLE assigned_inspector (
-    Assignment_Id INT PRIMARY KEY AUTO_INCREMENT,
+    Assignment_Id INT PRIMARY KEY ,
     Inspector_Id INT,
     Full_Name VARCHAR(50)
 );
 
 -- Create establishment table
 CREATE TABLE establishment (
-   Establishment_Id INT PRIMARY KEY AUTO_INCREMENT,
+   Establishment_Id INT PRIMARY KEY,
    Establishment_Name VARCHAR(50),
    Owner_Name VARCHAR(50),
    Address VARCHAR(100),
@@ -36,7 +36,7 @@ CREATE TABLE establishment (
 
 -- Create inspection table
 CREATE TABLE inspection (
-    Inspection_Id INT PRIMARY KEY AUTO_INCREMENT,
+    Inspection_Id INT PRIMARY KEY,
     Inspection_Date DATE,
     Score FLOAT,
     Grade ENUM('PASS','FAIL'),
@@ -48,7 +48,7 @@ CREATE TABLE inspection (
 
 -- Create violations table
 CREATE TABLE violations (
-    Violation_Id INT PRIMARY KEY AUTO_INCREMENT,
+    Violation_Id INT PRIMARY KEY,
     Requirement_Code INT,
     Inspection_ID INT
 );
