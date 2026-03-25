@@ -1,32 +1,28 @@
--- NOTE: Uncomment the line below if running this script for the first time to create the database
 -- CREATE DATABASE IF NOT EXISTS establishmentDB;
 USE establishmentDB;
 
--- Create inspection requirements table
+
 CREATE TABLE inspection_requirements (
     Requirement_Code INT PRIMARY KEY,
     Title VARCHAR(100),
     Standard_Fine INT
 );
 
--- Create inspector management table
 CREATE TABLE inspector_management (
-    Inspector_Id INT PRIMARY KEY ,
+    Inspector_Id INT PRIMARY KEY AUTO_INCREMENT,
     Full_Name VARCHAR(50),
     District VARCHAR(50),
     Active_Status ENUM('ACTIVE','INACTIVE') NOT NULL
 );
 
--- Create assigned inspector table
 CREATE TABLE assigned_inspector (
-    Assignment_Id INT PRIMARY KEY ,
+    Assignment_Id INT PRIMARY KEY AUTO_INCREMENT,
     Inspector_Id INT,
     Full_Name VARCHAR(50)
 );
 
--- Create establishment table
 CREATE TABLE establishment (
-   Establishment_Id INT PRIMARY KEY,
+   Establishment_Id INT PRIMARY KEY AUTO_INCREMENT,
    Establishment_Name VARCHAR(50),
    Owner_Name VARCHAR(50),
    Address VARCHAR(100),
@@ -34,9 +30,8 @@ CREATE TABLE establishment (
    Operating_Status ENUM('OPEN','CLOSED','SUSPENDED')
 );
 
--- Create inspection table
 CREATE TABLE inspection (
-    Inspection_Id INT PRIMARY KEY,
+    Inspection_Id INT PRIMARY KEY AUTO_INCREMENT,
     Inspection_Date DATE,
     Score FLOAT,
     Grade ENUM('PASS','FAIL'),
@@ -46,13 +41,14 @@ CREATE TABLE inspection (
     Violation_Id INT
 );
 
--- Create violations table
 CREATE TABLE violations (
-    Violation_Id INT PRIMARY KEY,
+    Violation_Id INT PRIMARY KEY AUTO_INCREMENT,
     Requirement_Code INT,
     Inspection_ID INT
 );
--- Insert inspection requirements with standard fine of 1000 for each violation
+
+
+-- Inspection Requirements
 INSERT INTO inspection_requirements (Requirement_Code, Title, Standard_Fine) VALUES
 (1, 'Cross-Contamination', 1000),
 (2, 'Bare-Hand Contact with Ready-to-Eat Food', 1000),
@@ -73,29 +69,34 @@ INSERT INTO inspection_requirements (Requirement_Code, Title, Standard_Fine) VAL
 (17, 'Failure to Properly Label Allergens', 1000),
 (18, 'Inadequate Training for Employees', 1000);
 
+-- Inspectors
 INSERT INTO inspector_management (Full_Name, District, Active_Status) VALUES
 ('Juan Dela Cruz', 'Manila', 'ACTIVE'),
 ('Maria Santos', 'Quezon City', 'ACTIVE'),
 ('Pedro Reyes', 'Makati', 'ACTIVE');
 
+-- Assigned Inspectors
 INSERT INTO assigned_inspector (Inspector_Id, Full_Name) VALUES
 (1, 'Juan Dela Cruz'),
 (2, 'Maria Santos'),
 (3, 'Pedro Reyes');
 
+-- Establishments
 INSERT INTO establishment (Establishment_Name, Owner_Name, Address, Contact_Info, Operating_Status) VALUES
 ('Jollibee Quiapo', 'Tony Tan Caktiong', 'Quiapo, Manila', '09171234567', 'OPEN'),
 ('McDonalds España', 'Golden Arches Dev Corp', 'España Blvd, Manila', '09181234567', 'OPEN'),
 ('Mang Inasal Cubao', 'Ibrahim Family', 'Cubao, Quezon City', '09191234567', 'OPEN');
 
-INSERT INTO inspection (Inspection_Date, Score, Grade, Remarks, Establishment_Id, Assignment_Id, Violation_Id) VALUES
-('2026-03-10', 85, 'PASS', 'Good compliance', 1, 1, 1),
-('2026-03-12', 60, 'FAIL', 'Multiple violations', 2, 2, 2),
-('2026-03-15', 90, 'PASS', 'Minor issues only', 3, 3, 3),
-('2026-03-18', 55, 'FAIL', 'Critical violations found', 1, 1, 4);
-
+-- Violations 
 INSERT INTO violations (Requirement_Code, Inspection_ID) VALUES
 (1, 1),
 (2, 2),
 (3, 2),
 (5, 4);
+
+-- Inspections
+INSERT INTO inspection (Inspection_Date, Score, Grade, Remarks, Establishment_Id, Assignment_Id, Violation_Id) VALUES
+('2026-03-10', 85, 'PASS', 'Good compliance', 1, 1, 1),
+('2026-03-12', 60, 'FAIL', 'Multiple violations', 2, 2, 2),
+('2026-03-15', 90, 'PASS', 'Minor issues only', 3, 3, 3),
+('2026-03-18', 55, 'FAIL', 'Critical violations found', 1, 1, 4);
