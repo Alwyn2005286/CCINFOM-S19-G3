@@ -24,7 +24,7 @@ public class InspectorDAO {
     }
 
     // ===== GET ALL INSPECTORS =====
-    public List<Inspector> getAllInspectors() {
+    public static List<Inspector> getAllInspectors() {
         List<Inspector> list = new ArrayList<>();
 
         try (Connection conn = DBConnection.getConnection()) {
