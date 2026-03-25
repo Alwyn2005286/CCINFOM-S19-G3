@@ -68,7 +68,7 @@ public class ViolationUI extends JFrame {
         btnRefresh.addActionListener(e -> loadTable());
         btnBack.addActionListener(e -> {
             this.dispose();
-            new RecordsManagementUI().setVisible(true);
+            new TransactionsUI().setVisible(true);
         });
 
         // Load data initially

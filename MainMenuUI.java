@@ -1,7 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
 
-
 public class MainMenuUI extends JFrame {
 
     public MainMenuUI() {
@@ -20,9 +19,10 @@ public class MainMenuUI extends JFrame {
             dispose();
         });
 
-        // Placeholder: Transactions
+        // Open Transactions UI
         btnTransactions.addActionListener(e -> {
-            JOptionPane.showMessageDialog(this, "Opened Transactions");
+            new TransactionsUI().setVisible(true);
+            dispose();
         });
 
         // Placeholder: Reports

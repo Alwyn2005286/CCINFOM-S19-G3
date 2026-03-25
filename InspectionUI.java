@@ -93,7 +93,7 @@ public class InspectionUI extends JFrame {
         btnDelete.addActionListener(e -> deleteInspection());
         btnRefresh.addActionListener(e -> loadTable());
         btnBack.addActionListener(e -> {this.dispose(); 
-            new RecordsManagementUI().setVisible(true);
+            new TransactionsUI().setVisible(true);
         });
 
         // Load data initially
