@@ -13,7 +13,7 @@ public class RecordsManagementUI extends JFrame {
 
         JTabbedPane tabbedPane = new JTabbedPane();
 
-        tabbedPane.add("Transactions (Inspections)", createInspectionPanel());
+        tabbedPane.add("Inspections", createInspectionPanel());
         tabbedPane.add("Violations", createViolationPanel());
 
         JButton btnBack = new JButton("Back");
