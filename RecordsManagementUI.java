@@ -95,7 +95,7 @@ public class RecordsManagementUI extends JFrame {
     }
 
      // ================= INSPECTORS TABLE =================
-    private JPanel createViolationPanel() {
+    private JPanel createInspectionPanel() {
         DefaultTableModel model = new DefaultTableModel();
         JTable table = new JTable(model);
 
@@ -109,10 +109,10 @@ public class RecordsManagementUI extends JFrame {
 
             for (Inspector is : list) {
                 model.addRow(new Object[]{
-                        v.getInspectorId(),
-                        v.getFullName(),
-                        v.getDistrict(),
-                        v.getActiveStatus()
+                        is.getInspectorId(),
+                        is.getFullName(),
+                        is.getDistrict(),
+                        is.getActiveStatus()
                 });
             }
 
