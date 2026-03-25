@@ -24,6 +24,7 @@ public class InspectorDAO {
     }
 
     // ===== GET ALL INSPECTORS =====
+    public static List<Inspector> getAllInspectors() {
     public List<Inspector> getAllInspectors() {
         List<Inspector> list = new ArrayList<>();
 
@@ -90,4 +91,5 @@ public class InspectorDAO {
             e.printStackTrace();
         }
     }
+}
 }
