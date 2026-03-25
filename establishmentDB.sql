@@ -1,3 +1,6 @@
+--  CREATE DATABASE IF NOT EXISTS establishmentDB;
+USE establishmentDB;
+
 -- Drop existing tables if they exist
 DROP TABLE IF EXISTS Violations, Inspections, Assigned_Inspectors, Establishments, Establishment_Owners, REF_Cities, Inspectors, REF_Inspection_Requirements;
 
@@ -103,6 +106,6 @@ INSERT INTO Violations (Violation_Code, Requirement_Code, Inspector_Remarks, Req
 INSERT INTO Inspections (Inspection_ID, Violation_Code, Assignment_ID, Inspection_Date, Remarks, Score, Grade) VALUES
 (1, 1, 1, '2024-01-15', 'Needs improvement.', 75.5, 'FAIL'),
 (2, 2, 2, '2024-01-16', 'Critical violation.', 60.0, 'FAIL'),
-(3, 3, 3, '2024-01-17', 'Serious health risk.', 45.0, 'FAIL');
-('2026-03-15', 90, 'PASS', 'Minor issues only', 3, 3, 3),
-('2026-03-18', 55, 'FAIL', 'Critical violations found', 1, 1, 4);
+(3, 3, 3, '2024-01-17', 'Serious health risk.', 45.0, 'FAIL'),
+(4, 3, 3, '2026-03-15', 'Minor issues only', 90, 'PASS'),
+(5, 1, 1, '2026-03-18', 'Critical violations found', 55, 'FAIL');
