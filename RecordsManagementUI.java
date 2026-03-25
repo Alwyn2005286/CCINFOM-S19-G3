@@ -93,4 +93,33 @@ public class RecordsManagementUI extends JFrame {
         panel.add(new JScrollPane(table), BorderLayout.CENTER);
         return panel;
     }
+
+     // ================= INSPECTORS TABLE =================
+    private JPanel createViolationPanel() {
+        DefaultTableModel model = new DefaultTableModel();
+        JTable table = new JTable(model);
+
+        model.addColumn("Inspector ID");
+        model.addColumn("Requirement Code");
+        model.addColumn("Inspection ID");
+
+        try {
+            List<Violation> list = ViolationDAO.getAllViolations();
+
+            for (Violation v : list) {
+                model.addRow(new Object[]{
+                        v.getViolationId(),
+                        v.getRequirementCode(),
+                        v.getInspectionId()
+                });
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        JPanel panel = new JPanel(new BorderLayout());
+        panel.add(new JScrollPane(table), BorderLayout.CENTER);
+        return panel;
+    }
 }
