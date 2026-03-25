@@ -1,10 +1,10 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class RecordsManagementUI extends JFrame {
+public class TransactionsUI extends JFrame {
 
-    public RecordsManagementUI() {
-        setTitle("Records Management");
+    public TransactionsUI() {
+        setTitle("Transactions Management");
         setSize(1000, 700);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -16,26 +16,24 @@ public class RecordsManagementUI extends JFrame {
         JButton btnInspection = new JButton("Inspection");
         JButton btnBack = new JButton("Back");
 
-        // Open Inspection Management UI
-
-        btnInspection.addActionListener(e -> {
-            new InspectionUI().setVisible(true);
-            dispose();
-        });
+        
+       
 
         // Open Violation Management UI
 
         btnViolation.addActionListener(e -> {
-            new ViolationUI().setVisible(true);
-            dispose();
-        });
-
-        btnEstablishment.addActionListener(e -> {
-            new EstablishmentUI().setVisible(true);
+            new ViolationTransactionUI().setVisible(true);
             dispose();
         });
 
         // ===== PLACEHOLDERS =====
+        btnInspection.addActionListener(e -> 
+                JOptionPane.showMessageDialog(this, "Inspection  (not implemented yet)")
+        );
+
+        btnEstablishment.addActionListener(e ->
+                JOptionPane.showMessageDialog(this, "Establishment  (not implemented yet)")
+        );
 
         btnInspector.addActionListener(e ->
                 JOptionPane.showMessageDialog(this, "Inspector  (not implemented yet)")

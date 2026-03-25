@@ -14,7 +14,7 @@ public class InspectionUI extends JFrame {
 
     public InspectionUI() {
         setTitle("Inspection Management");
-        setSize(900, 500);
+        setSize(1000, 700);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
@@ -93,7 +93,7 @@ public class InspectionUI extends JFrame {
         btnDelete.addActionListener(e -> deleteInspection());
         btnRefresh.addActionListener(e -> loadTable());
         btnBack.addActionListener(e -> {this.dispose(); 
-            new RecordsManagementUI().setVisible(true);
+            new TransactionsUI().setVisible(true);
         });
 
         // Load data initially

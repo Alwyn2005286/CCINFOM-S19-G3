@@ -12,7 +12,7 @@ public class ViolationUI extends JFrame {
 
     public ViolationUI() {
         setTitle("Violation Management");
-        setSize(700, 400);
+        setSize(1000, 700);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
@@ -68,7 +68,7 @@ public class ViolationUI extends JFrame {
         btnRefresh.addActionListener(e -> loadTable());
         btnBack.addActionListener(e -> {
             this.dispose();
-            new RecordsManagementUI().setVisible(true);
+            new TransactionsUI().setVisible(true);
         });
 
         // Load data initially
