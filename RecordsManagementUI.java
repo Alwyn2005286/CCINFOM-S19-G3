@@ -100,17 +100,19 @@ public class RecordsManagementUI extends JFrame {
         JTable table = new JTable(model);
 
         model.addColumn("Inspector ID");
-        model.addColumn("Requirement Code");
-        model.addColumn("Inspection ID");
+        model.addColumn("Full Name");
+        model.addColumn("Disctrict");
+        model.addColumn("Active Status");
 
         try {
-            List<Violation> list = ViolationDAO.getAllViolations();
+            List<Inspector> list = InspectorDAO.getAllInspectors();
 
-            for (Violation v : list) {
+            for (Inspector is : list) {
                 model.addRow(new Object[]{
-                        v.getViolationId(),
-                        v.getRequirementCode(),
-                        v.getInspectionId()
+                        v.getInspectorId(),
+                        v.getFullName(),
+                        v.getDistrict(),
+                        v.getActiveStatus()
                 });
             }
 
