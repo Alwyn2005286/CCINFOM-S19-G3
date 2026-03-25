@@ -26,15 +26,18 @@ public class TransactionsUI extends JFrame {
             dispose();
         });
 
-        // ===== PLACEHOLDERS =====
+        // ===== PLACEHOLDER =====
         btnInspection.addActionListener(e -> 
                 JOptionPane.showMessageDialog(this, "Inspection  (not implemented yet)")
         );
 
-        btnEstablishment.addActionListener(e ->
-                JOptionPane.showMessageDialog(this, "Establishment  (not implemented yet)")
-        );
+        // Open Establishment Transaction UI
+        btnEstablishment.addActionListener(e -> {
+            new EstablishmentTransactionUI().setVisible(true);
+            dispose();
+        });
 
+        // ===== PLACEHOLDER =====
         btnInspector.addActionListener(e ->
                 JOptionPane.showMessageDialog(this, "Inspector  (not implemented yet)")
         );
