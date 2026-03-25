@@ -37,9 +37,10 @@ public class RecordsManagementUI extends JFrame {
 
         // ===== PLACEHOLDERS =====
 
-        btnInspector.addActionListener(e ->
-                JOptionPane.showMessageDialog(this, "Inspector  (not implemented yet)")
-        );
+        btnInspector.addActionListener(e -> {
+            new InspectorUI().setVisible(true);
+            dispose();
+        });
 
         btnRequirement.addActionListener(e ->
                 JOptionPane.showMessageDialog(this, "Inspection Requirement  (not implemented yet)")
