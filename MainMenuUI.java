@@ -25,12 +25,14 @@ public class MainMenuUI extends JFrame {
             dispose();
         });
 
-        // Placeholder: Reports
+        // Open Reports
         btnReports.addActionListener(e -> {
-            JOptionPane.showMessageDialog(this, "Opened Reports");
+            new ReportsUI().setVisible(true);
+            dispose();
         });
 
-        setLayout(new GridLayout(3, 1, 10, 10));
+        // ===== LAYOUT =====
+        setLayout(new GridLayout(3, 1)); 
 
         add(btnRecords);
         add(btnTransactions);
