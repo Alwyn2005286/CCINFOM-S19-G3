@@ -1,96 +1,65 @@
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.util.List;
 
 public class RecordsManagementUI extends JFrame {
 
     public RecordsManagementUI() {
-        setTitle("Records Management (View Only)");
-        setSize(900, 500);
+        setTitle("Records Management");
+        setSize(400, 500);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        JTabbedPane tabbedPane = new JTabbedPane();
-
-        tabbedPane.add("Inspections", createInspectionPanel());
-        tabbedPane.add("Violations", createViolationPanel());
-
+        JButton btnEstablishment = new JButton("Establishment");
+        JButton btnInspector = new JButton("Inspector ");
+        JButton btnRequirement = new JButton("Inspection Requirement");
+        JButton btnViolation = new JButton("Violation");
+        JButton btnInspection = new JButton("Inspection");
         JButton btnBack = new JButton("Back");
+
+        // Open Inspection Management UI
+
+        btnInspection.addActionListener(e -> {
+            new InspectionUI().setVisible(true);
+            dispose();
+        });
+
+        // Open Violation Management UI
+
+        btnViolation.addActionListener(e -> {
+            new ViolationUI().setVisible(true);
+            dispose();
+        });
+
+        // ===== PLACEHOLDERS =====
+        // put your implementation here for the other butons
+
+        btnEstablishment.addActionListener(e ->
+                JOptionPane.showMessageDialog(this, "Establishment  (not implemented yet)")
+        );
+
+        btnInspector.addActionListener(e ->
+                JOptionPane.showMessageDialog(this, "Inspector  (not implemented yet)")
+        );
+
+        btnRequirement.addActionListener(e ->
+                JOptionPane.showMessageDialog(this, "Inspection Requirement  (not implemented yet)")
+        );
+
+        // ===== BACK =====
+
         btnBack.addActionListener(e -> {
             new MainMenuUI().setVisible(true);
             dispose();
         });
 
-        add(tabbedPane, BorderLayout.CENTER);
-        add(btnBack, BorderLayout.SOUTH);
-    }
+        // ===== LAYOUT =====
+        setLayout(new GridLayout(6, 1, 10, 10));
 
-    // ================= INSPECTIONS TABLE =================
-    private JPanel createInspectionPanel() {
-        DefaultTableModel model = new DefaultTableModel();
-        JTable table = new JTable(model);
-
-        model.addColumn("Inspection ID");
-        model.addColumn("Date");
-        model.addColumn("Score");
-        model.addColumn("Grade");
-        model.addColumn("Remarks");
-        model.addColumn("Establishment ID");
-        model.addColumn("Assignment ID");
-        model.addColumn("Violation ID");
-
-        try {
-            List<Inspection> list = InspectionDAO.getAllInspections();
-
-            for (Inspection i : list) {
-                model.addRow(new Object[]{
-                        i.getInspectionId(),
-                        i.getInspectionDate(),
-                        i.getScore(),
-                        i.getGrade(),
-                        i.getRemarks(),
-                        i.getEstablishmentId(),
-                        i.getAssignmentId(),
-                        i.getViolationId()
-                });
-            }
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-
-        JPanel panel = new JPanel(new BorderLayout());
-        panel.add(new JScrollPane(table), BorderLayout.CENTER);
-        return panel;
-    }
-
-    // ================= VIOLATIONS TABLE =================
-    private JPanel createViolationPanel() {
-        DefaultTableModel model = new DefaultTableModel();
-        JTable table = new JTable(model);
-
-        model.addColumn("Violation ID");
-        model.addColumn("Requirement Code");
-        model.addColumn("Inspection ID");
-
-        try {
-            List<Violation> list = ViolationDAO.getAllViolations();
-
-            for (Violation v : list) {
-                model.addRow(new Object[]{
-                        v.getViolationId(),
-                        v.getRequirementCode(),
-                        v.getInspectionId()
-                });
-            }
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-
-        JPanel panel = new JPanel(new BorderLayout());
-        panel.add(new JScrollPane(table), BorderLayout.CENTER);
-        return panel;
+        add(btnEstablishment);
+        add(btnInspector);
+        add(btnRequirement);
+        add(btnViolation);
+        add(btnInspection);
+        add(btnBack);
     }
 }

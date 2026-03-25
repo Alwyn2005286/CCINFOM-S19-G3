@@ -19,10 +19,9 @@ public class MainMenuUI extends JFrame {
             dispose();
         });
 
-        // Open Transactions UI
+        // placeholder: Transactions
         btnTransactions.addActionListener(e -> {
-            new TransactionsUI().setVisible(true);
-            dispose();
+            JOptionPane.showMessageDialog(this, "Opened Transactions");
         });
 
         // Placeholder: Reports
