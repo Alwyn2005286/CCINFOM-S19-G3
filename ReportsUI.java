@@ -27,8 +27,8 @@ public class ReportsUI extends JFrame {
         // placeholders 
 
         btnInspectionReport.addActionListener(e -> {
-           
-            JOptionPane.showMessageDialog(this, "Inspection Report (not implemented yet)");
+            new InspectionReportUI().setVisible(true);
+            dispose();
         });
 
         btnViolationFinesReport.addActionListener(e -> {
