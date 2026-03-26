@@ -35,7 +35,7 @@ public class AssignedInspectorUI extends JPanel {
         addBtn.addActionListener(e -> save());
         ctrl.add(addBtn);
         
-        JButton refreshBtn = new JButton("Refresh");
+        JButton refreshBtn = new JButton("Refresh Data");
         refreshBtn.addActionListener(e -> refreshData());
         ctrl.add(refreshBtn);
         

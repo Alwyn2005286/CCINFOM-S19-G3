@@ -1,5 +1,5 @@
-import javax.swing.*;
 import java.awt.*;
+import javax.swing.*;
 
 public class MainMenuUI extends JFrame {
 
@@ -19,7 +19,20 @@ public class MainMenuUI extends JFrame {
         // Launch the unified tabbed window
         btnDataManagement.addActionListener(e -> new DataManagementUI().setVisible(true));
 
-        centerPanel.add(btnDataManagement);
+        JButton btnReports = new JButton("Open Reports");
+        btnReports.setPreferredSize(new Dimension(250, 50));
+        btnReports.setFont(new Font("Arial", Font.BOLD, 14));
+        btnReports.addActionListener(e -> new ReportsUI().setVisible(true));
+        
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.insets = new Insets(10, 10, 10, 10);
+        centerPanel.add(btnDataManagement, gbc);
+        
+        gbc.gridy = 1;
+        centerPanel.add(btnReports, gbc);
+
         add(centerPanel, BorderLayout.CENTER);
     }
 

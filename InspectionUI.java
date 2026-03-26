@@ -44,7 +44,14 @@ public class InspectionUI extends JPanel {
 
         JButton saveBtn = new JButton("Save");
         saveBtn.addActionListener(e -> save());
-        add(saveBtn, BorderLayout.SOUTH);
+        
+        JButton refreshButton = new JButton("Refresh Data");
+        refreshButton.addActionListener(e -> refreshData());
+
+        JPanel controlPanel = new JPanel();
+        controlPanel.add(saveBtn);
+        controlPanel.add(refreshButton);
+        add(controlPanel, BorderLayout.SOUTH);
 
         refreshData();
     }

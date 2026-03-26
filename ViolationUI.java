@@ -44,6 +44,11 @@ public class ViolationUI extends JPanel {
         JButton addBtn = new JButton("Save");
         addBtn.addActionListener(e -> save());
         ctrl.add(addBtn);
+
+        JButton refreshButton = new JButton("Refresh Data");
+        refreshButton.addActionListener(e -> refreshData());
+        ctrl.add(refreshButton);
+        
         add(ctrl, BorderLayout.SOUTH);
 
         refreshData();

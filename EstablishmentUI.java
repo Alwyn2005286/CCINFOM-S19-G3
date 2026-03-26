@@ -37,7 +37,7 @@ public class EstablishmentUI extends JPanel {
 
         JPanel controlPanel = new JPanel();
         JButton addButton = new JButton("Save");
-        JButton refreshButton = new JButton("Refresh");
+        JButton refreshButton = new JButton("Refresh Data");
         
         addButton.addActionListener(e -> save());
         refreshButton.addActionListener(e -> refreshData());
