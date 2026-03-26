@@ -64,34 +64,5 @@ public class RecordsManagementUI extends JFrame {
         add(btnBack);
     }
 
-     // ================= INSPECTORS TABLE =================
-    private JPanel createInspectionPanel() {
-        DefaultTableModel model = new DefaultTableModel();
-        JTable table = new JTable(model);
 
-        model.addColumn("Inspector ID");
-        model.addColumn("Full Name");
-        model.addColumn("Disctrict");
-        model.addColumn("Active Status");
-
-        try {
-            List<Inspector> list = InspectorDAO.getAllInspectors();
-
-            for (Inspector is : list) {
-                model.addRow(new Object[]{
-                        is.getInspectorId(),
-                        is.getFullName(),
-                        is.getDistrict(),
-                        is.getActiveStatus()
-                });
-            }
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-
-        JPanel panel = new JPanel(new BorderLayout());
-        panel.add(new JScrollPane(table), BorderLayout.CENTER);
-        return panel;
-    }
 }
